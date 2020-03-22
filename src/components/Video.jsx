@@ -11,7 +11,7 @@ const Video = () => {
   const getVideos = async () => {
     return await axios
       .get(
-        `http://127.0.0.1:3000/api/videos`, {}
+        `https://sonzera-api.herokuapp.com/api/videos`, {}
       )
       .then(response => {
         return response.data.videos
