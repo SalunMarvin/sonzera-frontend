@@ -38,6 +38,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
 }
 
 .img {
@@ -49,6 +50,13 @@
   position: relative;
   width: 300px;
   z-index: 10000;
+}
+
+.next-song {
+  color: #FFF;
+  text-decoration: underline;
+  pointer-events: all;
+  cursor: pointer;
 }
 
 .video {

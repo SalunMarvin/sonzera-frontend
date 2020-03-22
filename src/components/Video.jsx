@@ -1,37 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import YouTube from 'react-youtube';
-import axios from 'axios'
 
-const Video = () => {
-  const [videoList, setVideoList] = useState([])
-  const [actualVideo, setActualVideo] = useState('')
-  const [isLoaded, setLoaded] = useState(false)
-  const [index, setIndex] = useState(0)
-
-  const getVideos = async () => {
-    return await axios
-      .get(
-        `https://sonzera-api.herokuapp.com/api/videos`, {}
-      )
-      .then(response => {
-        return response.data.videos
-      })
-      .catch(error => {
-        return false
-      })
-  }
-
-  useEffect(() => {
-    async function startLoading() {
-      const videos = await getVideos()
-      await setVideoList(videos);
-      await setActualVideo(videos[index]);
-      setLoaded(true)
-    }
-
-    startLoading()
-  }, [])
-
+const Video = ({actualVideo, nextSong, isLoaded}) => {
   const opts = {
     height: window.innerHeight,
     width: window.innerWidth,
@@ -42,14 +12,6 @@ const Video = () => {
       rel: 0,
     }
   };
-
-  const nextSong = async () => {
-    setLoaded(false)
-    const newIndex = index + 1
-    await setIndex(newIndex)
-    await setActualVideo(videoList[newIndex])
-    setLoaded(true)
-  }
 
   return (
     isLoaded &&
